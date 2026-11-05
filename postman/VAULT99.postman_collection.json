@@ -1,0 +1,531 @@
+{
+  "info": {
+    "name": "VAULT 99 · 25 operaciones CRUD",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Base de demostración local. POST guarda IDs por entidad. Las relaciones de los ejemplos usan los IDs del seed; el inventario duplicado produce 409. Ajusta IDs antes de crear/eliminar relaciones."
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:3011/api"
+    },
+    {
+      "key": "marcas_id",
+      "value": "1"
+    },
+    {
+      "key": "colaboraciones_id",
+      "value": "1"
+    },
+    {
+      "key": "tenis_id",
+      "value": "1"
+    },
+    {
+      "key": "tallas_id",
+      "value": "1"
+    },
+    {
+      "key": "inventario_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "marcas",
+      "item": [
+        {
+          "name": "Crear marcas",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/marcas",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Marca Postman\",\n  \"descripcion\": \"Demostración\",\n  \"pais_origen\": \"Costa Rica\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) { pm.collectionVariables.set(\"marcas_id\", pm.response.json().data.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Listar marcas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/marcas"
+          }
+        },
+        {
+          "name": "Obtener marcas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/marcas/{{marcas_id}}"
+          }
+        },
+        {
+          "name": "Actualizar marcas",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/marcas/{{marcas_id}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Marca Postman\",\n  \"descripcion\": \"Demostración\",\n  \"pais_origen\": \"Costa Rica\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Eliminar marcas",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/marcas/{{marcas_id}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "colaboraciones",
+      "item": [
+        {
+          "name": "Crear colaboraciones",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/colaboraciones",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Colección de prueba\",\n  \"marca_principal_id\": 1,\n  \"marca_colaboradora_id\": 2,\n  \"anio_lanzamiento\": 2022,\n  \"edicion_limitada\": true\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) { pm.collectionVariables.set(\"colaboraciones_id\", pm.response.json().data.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Listar colaboraciones",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/colaboraciones"
+          }
+        },
+        {
+          "name": "Obtener colaboraciones",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/colaboraciones/{{colaboraciones_id}}"
+          }
+        },
+        {
+          "name": "Actualizar colaboraciones",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/colaboraciones/{{colaboraciones_id}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Colección de prueba\",\n  \"marca_principal_id\": 1,\n  \"marca_colaboradora_id\": 2,\n  \"anio_lanzamiento\": 2022,\n  \"edicion_limitada\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Eliminar colaboraciones",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/colaboraciones/{{colaboraciones_id}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "tenis",
+      "item": [
+        {
+          "name": "Crear tenis",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/tenis",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colaboracion_id\": 1,\n  \"sku\": \"POSTMAN-DEMO-001\",\n  \"modelo\": \"Pieza de prueba\",\n  \"colorway\": \"Cobalt\",\n  \"precio_venta_crc\": 500000,\n  \"rareza\": \"GRAIL\",\n  \"condicion\": \"COLECCION\",\n  \"autenticidad_estado\": \"PENDIENTE\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) { pm.collectionVariables.set(\"tenis_id\", pm.response.json().data.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Listar tenis",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/tenis"
+          }
+        },
+        {
+          "name": "Obtener tenis",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/tenis/{{tenis_id}}"
+          }
+        },
+        {
+          "name": "Actualizar tenis",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/tenis/{{tenis_id}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colaboracion_id\": 1,\n  \"sku\": \"POSTMAN-DEMO-001\",\n  \"modelo\": \"Pieza de prueba\",\n  \"colorway\": \"Cobalt\",\n  \"precio_venta_crc\": 500000,\n  \"rareza\": \"GRAIL\",\n  \"condicion\": \"COLECCION\",\n  \"autenticidad_estado\": \"PENDIENTE\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Eliminar tenis",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/tenis/{{tenis_id}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "tallas",
+      "item": [
+        {
+          "name": "Crear tallas",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/tallas",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sistema\": \"EU\",\n  \"valor\": 45.5\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) { pm.collectionVariables.set(\"tallas_id\", pm.response.json().data.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Listar tallas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/tallas"
+          }
+        },
+        {
+          "name": "Obtener tallas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/tallas/{{tallas_id}}"
+          }
+        },
+        {
+          "name": "Actualizar tallas",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/tallas/{{tallas_id}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sistema\": \"EU\",\n  \"valor\": 45.5\n}"
+            }
+          }
+        },
+        {
+          "name": "Eliminar tallas",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/tallas/{{tallas_id}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "inventario",
+      "item": [
+        {
+          "name": "Crear inventario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/inventario",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenis_id\": 1,\n  \"talla_id\": 1,\n  \"cantidad\": 2,\n  \"ubicacion\": \"Vitrina A\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) { pm.collectionVariables.set(\"inventario_id\", pm.response.json().data.id); }"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Listar inventario",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/inventario"
+          }
+        },
+        {
+          "name": "Obtener inventario",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/inventario/{{inventario_id}}"
+          }
+        },
+        {
+          "name": "Actualizar inventario",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/inventario/{{inventario_id}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tenis_id\": 1,\n  \"talla_id\": 1,\n  \"cantidad\": 2,\n  \"ubicacion\": \"Vitrina A\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Eliminar inventario",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/inventario/{{inventario_id}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Errores esperados",
+      "item": [
+        {
+          "name": "Precio cero (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/tenis",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"colaboracion_id\": 1, \"sku\": \"POSTMAN-DEMO-001\", \"modelo\": \"Pieza de prueba\", \"colorway\": \"Cobalt\", \"precio_venta_crc\": 0, \"rareza\": \"GRAIL\", \"condicion\": \"COLECCION\", \"autenticidad_estado\": \"PENDIENTE\"}"
+            }
+          }
+        },
+        {
+          "name": "Misma marca (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/colaboraciones",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\": \"Colección de prueba\", \"marca_principal_id\": 1, \"marca_colaboradora_id\": 1, \"anio_lanzamiento\": 2022, \"edicion_limitada\": true}"
+            }
+          }
+        },
+        {
+          "name": "Stock negativo (400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/inventario",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"tenis_id\": 1, \"talla_id\": 1, \"cantidad\": -1, \"ubicacion\": \"Vitrina A\"}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

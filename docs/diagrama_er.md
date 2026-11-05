@@ -1,0 +1,54 @@
+# Diagrama entidad-relación
+
+```mermaid
+erDiagram
+    MARCAS ||--o{ COLABORACIONES : principal
+    MARCAS ||--o{ COLABORACIONES : colaboradora
+    COLABORACIONES ||--o{ TENIS : incluye
+    TENIS ||--o{ INVENTARIO : dispone
+    TALLAS ||--o{ INVENTARIO : dimensiona
+    MARCAS {
+        INT_UNSIGNED id PK
+        VARCHAR nombre UK
+        VARCHAR descripcion
+        VARCHAR pais_origen
+    }
+    COLABORACIONES {
+        INT_UNSIGNED id PK
+        VARCHAR nombre
+        INT_UNSIGNED marca_principal_id FK
+        INT_UNSIGNED marca_colaboradora_id FK
+        SMALLINT_UNSIGNED anio_lanzamiento
+        TEXT historia
+        BOOLEAN edicion_limitada
+    }
+    TENIS {
+        INT_UNSIGNED id PK
+        INT_UNSIGNED colaboracion_id FK
+        VARCHAR sku UK
+        VARCHAR modelo
+        VARCHAR colorway
+        TEXT descripcion
+        DECIMAL_12_2 precio_venta_crc
+        DECIMAL_12_2 costo_adquisicion_crc
+        ENUM rareza
+        ENUM condicion
+        ENUM autenticidad_estado
+        VARCHAR_500 imagen_url
+    }
+    TALLAS {
+        INT_UNSIGNED id PK
+        ENUM sistema
+        DECIMAL_4_1 valor
+    }
+    INVENTARIO {
+        INT_UNSIGNED id PK
+        INT_UNSIGNED tenis_id FK
+        INT_UNSIGNED talla_id FK
+        INT_UNSIGNED cantidad
+        VARCHAR ubicacion
+        DATETIME actualizado_en
+    }
+```
+
+Claves únicas compuestas: tallas(sistema, valor), inventario(tenis_id, talla_id). Ver modelo_datos.md para las longitudes, enums y restricciones exactas. El archivo .mmd es editable y el archivo .svg se puede abrir o imprimir en el navegador.

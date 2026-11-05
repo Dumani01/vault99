@@ -1,0 +1,1698 @@
+{
+  "date": "2026-11-04T19:48:29.792Z",
+  "passed": 25,
+  "requests": [
+    {
+      "method": "POST",
+      "path": "/marcas",
+      "body": {
+        "nombre": "QA-A-1793821708816"
+      },
+      "status": 201,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 18,
+          "nombre": "QA-A-1793821708816",
+          "descripcion": null,
+          "pais_origen": null
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/marcas",
+      "body": {
+        "nombre": "QA-A-1793821708816"
+      },
+      "status": 409,
+      "response": {
+        "success": false,
+        "message": "Ya existe un registro con esa combinación o valor único."
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/marcas",
+      "body": {
+        "nombre": "QA-B-1793821708816"
+      },
+      "status": 201,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 20,
+          "nombre": "QA-B-1793821708816",
+          "descripcion": null,
+          "pais_origen": null
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/colaboraciones",
+      "body": {
+        "nombre": "QA Collaboration",
+        "marca_principal_id": 18,
+        "marca_colaboradora_id": 20,
+        "anio_lanzamiento": 2022
+      },
+      "status": 201,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 15,
+          "nombre": "QA Collaboration",
+          "marca_principal_id": 18,
+          "marca_colaboradora_id": 20,
+          "anio_lanzamiento": 2022,
+          "historia": null,
+          "edicion_limitada": 1
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/colaboraciones",
+      "body": {
+        "nombre": "QA Collaboration",
+        "marca_principal_id": 18,
+        "marca_colaboradora_id": 18,
+        "anio_lanzamiento": 2022
+      },
+      "status": 400,
+      "response": {
+        "success": false,
+        "message": "La colaboración requiere dos marcas diferentes."
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/colaboraciones",
+      "body": {
+        "nombre": "QA Collaboration",
+        "marca_principal_id": 18,
+        "marca_colaboradora_id": 4294967295,
+        "anio_lanzamiento": 2022
+      },
+      "status": 409,
+      "response": {
+        "success": false,
+        "message": "El registro relacionado no existe. Actualiza las opciones."
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/tenis",
+      "body": {
+        "colaboracion_id": 15,
+        "sku": "QA-1793821708816",
+        "modelo": "QA Grail",
+        "colorway": "Blue",
+        "precio_venta_crc": 250000,
+        "rareza": "GRAIL",
+        "condicion": "NUEVO"
+      },
+      "status": 201,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 13,
+          "colaboracion_id": 15,
+          "sku": "QA-1793821708816",
+          "modelo": "QA Grail",
+          "colorway": "Blue",
+          "descripcion": null,
+          "precio_venta_crc": 250000,
+          "costo_adquisicion_crc": null,
+          "rareza": "GRAIL",
+          "condicion": "NUEVO",
+          "autenticidad_estado": "PENDIENTE",
+          "imagen_url": null
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/catalogo/13",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 13,
+          "colaboracion_id": 15,
+          "sku": "QA-1793821708816",
+          "modelo": "QA Grail",
+          "colorway": "Blue",
+          "descripcion": null,
+          "precio_venta_crc": 250000,
+          "costo_adquisicion_crc": null,
+          "rareza": "GRAIL",
+          "condicion": "NUEVO",
+          "autenticidad_estado": "PENDIENTE",
+          "imagen_url": null,
+          "colaboracion": "QA Collaboration",
+          "historia": null,
+          "anio_lanzamiento": 2022,
+          "marca_principal_id": 18,
+          "marca_colaboradora_id": 20,
+          "marca_principal": "QA-A-1793821708816",
+          "marca_colaboradora": "QA-B-1793821708816",
+          "stock": 0,
+          "tallas": []
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/tenis",
+      "body": {
+        "colaboracion_id": 15,
+        "sku": "QA-1793821708816",
+        "modelo": "QA Grail",
+        "colorway": "Blue",
+        "precio_venta_crc": 250000,
+        "rareza": "GRAIL",
+        "condicion": "NUEVO"
+      },
+      "status": 409,
+      "response": {
+        "success": false,
+        "message": "Ya existe un registro con esa combinación o valor único."
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/tenis",
+      "body": {
+        "colaboracion_id": 15,
+        "sku": "QA-1793821708816",
+        "modelo": "QA Grail",
+        "colorway": "Blue",
+        "precio_venta_crc": 0,
+        "rareza": "GRAIL",
+        "condicion": "NUEVO"
+      },
+      "status": 400,
+      "response": {
+        "success": false,
+        "message": "Valor inválido en precio_venta_crc."
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/tenis",
+      "body": {
+        "colaboracion_id": 15,
+        "sku": "QA-1793821708816",
+        "modelo": "QA Grail",
+        "colorway": "Blue",
+        "precio_venta_crc": -1,
+        "rareza": "GRAIL",
+        "condicion": "NUEVO"
+      },
+      "status": 400,
+      "response": {
+        "success": false,
+        "message": "Valor inválido en precio_venta_crc."
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/tallas",
+      "body": {
+        "sistema": "EU",
+        "valor": 99.9
+      },
+      "status": 201,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 13,
+          "sistema": "EU",
+          "valor": 99.9
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/tallas",
+      "body": {
+        "sistema": "EU",
+        "valor": 99.9
+      },
+      "status": 409,
+      "response": {
+        "success": false,
+        "message": "Ya existe un registro con esa combinación o valor único."
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/inventario",
+      "body": {
+        "tenis_id": 13,
+        "talla_id": 13,
+        "cantidad": 2,
+        "ubicacion": "QA"
+      },
+      "status": 201,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 22,
+          "tenis_id": 13,
+          "talla_id": 13,
+          "cantidad": 2,
+          "ubicacion": "QA",
+          "actualizado_en": "2026-11-04T19:48:29.000Z"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/inventario",
+      "body": {
+        "tenis_id": 13,
+        "talla_id": 13,
+        "cantidad": 2
+      },
+      "status": 409,
+      "response": {
+        "success": false,
+        "message": "Ya existe un registro con esa combinación o valor único."
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/inventario/22",
+      "body": {
+        "tenis_id": 13,
+        "talla_id": 13,
+        "cantidad": -1
+      },
+      "status": 400,
+      "response": {
+        "success": false,
+        "message": "Valor inválido en cantidad."
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/inventario/22",
+      "body": {
+        "tenis_id": 13,
+        "talla_id": 13,
+        "cantidad": 1.5
+      },
+      "status": 400,
+      "response": {
+        "success": false,
+        "message": "Valor inválido en cantidad."
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/inventario/22",
+      "body": {
+        "tenis_id": 13,
+        "talla_id": 13,
+        "cantidad": 7
+      },
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 22,
+          "tenis_id": 13,
+          "talla_id": 13,
+          "cantidad": 7,
+          "ubicacion": null,
+          "actualizado_en": "2026-11-04T19:48:29.000Z"
+        }
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/marcas/18",
+      "status": 409,
+      "response": {
+        "success": false,
+        "message": "No se puede eliminar: hay registros relacionados."
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/colaboraciones/15",
+      "status": 409,
+      "response": {
+        "success": false,
+        "message": "No se puede eliminar: hay registros relacionados."
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/tenis/13",
+      "status": 409,
+      "response": {
+        "success": false,
+        "message": "No se puede eliminar: hay registros relacionados."
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/tallas/13",
+      "status": 409,
+      "response": {
+        "success": false,
+        "message": "No se puede eliminar: hay registros relacionados."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/marcas/4294967295",
+      "status": 404,
+      "response": {
+        "success": false,
+        "message": "Registro no encontrado."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/colaboraciones/4294967295",
+      "status": 404,
+      "response": {
+        "success": false,
+        "message": "Registro no encontrado."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tenis/4294967295",
+      "status": 404,
+      "response": {
+        "success": false,
+        "message": "Registro no encontrado."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tallas/4294967295",
+      "status": 404,
+      "response": {
+        "success": false,
+        "message": "Registro no encontrado."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/inventario/4294967295",
+      "status": 404,
+      "response": {
+        "success": false,
+        "message": "Registro no encontrado."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/marcas",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "id": 20,
+            "nombre": "QA-B-1793821708816",
+            "descripcion": null,
+            "pais_origen": null
+          },
+          {
+            "id": 18,
+            "nombre": "QA-A-1793821708816",
+            "descripcion": null,
+            "pais_origen": null
+          },
+          {
+            "id": 5,
+            "nombre": "Dior",
+            "descripcion": "Referencia cultural; sin afiliación.",
+            "pais_origen": "Francia"
+          },
+          {
+            "id": 4,
+            "nombre": "Off-White",
+            "descripcion": "Referencia de diseño; sin afiliación.",
+            "pais_origen": "Italia"
+          },
+          {
+            "id": 3,
+            "nombre": "Supreme",
+            "descripcion": "Referencia streetwear; sin afiliación.",
+            "pais_origen": "Estados Unidos"
+          },
+          {
+            "id": 2,
+            "nombre": "Louis Vuitton",
+            "descripcion": "Referencia de diseño de lujo; sin afiliación.",
+            "pais_origen": "Francia"
+          },
+          {
+            "id": 1,
+            "nombre": "Nike",
+            "descripcion": "Referencia cultural; sin afiliación comercial.",
+            "pais_origen": "Estados Unidos"
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/marcas/18",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 18,
+          "nombre": "QA-A-1793821708816",
+          "descripcion": null,
+          "pais_origen": null
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/marcas/18",
+      "body": {
+        "nombre": "QA-A-1793821708816-edited"
+      },
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 18,
+          "nombre": "QA-A-1793821708816-edited",
+          "descripcion": null,
+          "pais_origen": null
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/colaboraciones",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "id": 15,
+            "nombre": "QA Collaboration",
+            "marca_principal_id": 18,
+            "marca_colaboradora_id": 20,
+            "anio_lanzamiento": 2022,
+            "historia": null,
+            "edicion_limitada": 1
+          },
+          {
+            "id": 14,
+            "nombre": "Air VaporMax Black · Off-White",
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 4,
+            "anio_lanzamiento": 2018,
+            "historia": "Referencia académica a la edición Black de la colaboración Nike y Off-White, lanzada en 2018.",
+            "edicion_limitada": 1
+          },
+          {
+            "id": 13,
+            "nombre": "Air Foamposite One Red · Supreme",
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 3,
+            "anio_lanzamiento": 2014,
+            "historia": "Referencia académica a la edición Red de la colaboración Nike y Supreme, lanzada en 2014.",
+            "edicion_limitada": 1
+          },
+          {
+            "id": 12,
+            "nombre": "Air Presto White · Off-White",
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 4,
+            "anio_lanzamiento": 2018,
+            "historia": "Referencia académica a la edición White de la colaboración Nike y Off-White, lanzada en 2018.",
+            "edicion_limitada": 1
+          },
+          {
+            "id": 4,
+            "nombre": "Air Dior · Archivo de alta costura",
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 5,
+            "anio_lanzamiento": 2020,
+            "historia": "Referencia académica al encuentro entre Jordan y Dior. Nike agrupa la marca Jordan en este modelo simplificado. Imagen conceptual, sin afiliación.",
+            "edicion_limitada": 1
+          },
+          {
+            "id": 3,
+            "nombre": "Air Force 1 · Archivo streetwear",
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 3,
+            "anio_lanzamiento": 2020,
+            "historia": "Referencia cultural al encuentro de Nike y Supreme. Datos, precios y existencias ficticios.",
+            "edicion_limitada": 1
+          },
+          {
+            "id": 2,
+            "nombre": "The Ten · Archivo de diseño",
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 4,
+            "anio_lanzamiento": 2017,
+            "historia": "Una exploración del lenguaje deconstruido. Referencia académica a Nike y Off-White; imágenes conceptuales originales.",
+            "edicion_limitada": 1
+          },
+          {
+            "id": 1,
+            "nombre": "Air Force 1 · Archivo de lujo",
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 2,
+            "anio_lanzamiento": 2022,
+            "historia": "Referencia cultural de la colaboración Nike y Louis Vuitton. Catálogo académico, sin afiliación. Las imágenes son conceptos ilustrativos y no representan el producto oficial.",
+            "edicion_limitada": 1
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/colaboraciones/15",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 15,
+          "nombre": "QA Collaboration",
+          "marca_principal_id": 18,
+          "marca_colaboradora_id": 20,
+          "anio_lanzamiento": 2022,
+          "historia": null,
+          "edicion_limitada": 1
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/colaboraciones/15",
+      "body": {
+        "nombre": "QA edited",
+        "marca_principal_id": 18,
+        "marca_colaboradora_id": 20,
+        "anio_lanzamiento": 2022
+      },
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 15,
+          "nombre": "QA edited",
+          "marca_principal_id": 18,
+          "marca_colaboradora_id": 20,
+          "anio_lanzamiento": 2022,
+          "historia": null,
+          "edicion_limitada": 1
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tenis",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "id": 13,
+            "colaboracion_id": 15,
+            "sku": "QA-1793821708816",
+            "modelo": "QA Grail",
+            "colorway": "Blue",
+            "descripcion": null,
+            "precio_venta_crc": 250000,
+            "costo_adquisicion_crc": null,
+            "rareza": "GRAIL",
+            "condicion": "NUEVO",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": null
+          },
+          {
+            "id": 8,
+            "colaboracion_id": 14,
+            "sku": "V99-DEMO-008",
+            "modelo": "Air VaporMax · Off-White",
+            "colorway": "Black / Clear",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 795000,
+            "costo_adquisicion_crc": 520000,
+            "rareza": "EXCLUSIVO",
+            "condicion": "NUEVO",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/offwhite-vapormax.jpg"
+          },
+          {
+            "id": 7,
+            "colaboracion_id": 1,
+            "sku": "V99-DEMO-007",
+            "modelo": "Air Force 1 Mid · Louis Vuitton",
+            "colorway": "White / White",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 2150000,
+            "costo_adquisicion_crc": 1600000,
+            "rareza": "GRAIL",
+            "condicion": "COLECCION",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/lv-af1-mid.jpg"
+          },
+          {
+            "id": 6,
+            "colaboracion_id": 13,
+            "sku": "V99-DEMO-006",
+            "modelo": "Air Foamposite One · Supreme",
+            "colorway": "Red / Gold / Black",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 850000,
+            "costo_adquisicion_crc": 600000,
+            "rareza": "MUY_RARO",
+            "condicion": "COLECCION",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/supreme-foamposite.jpg"
+          },
+          {
+            "id": 5,
+            "colaboracion_id": 12,
+            "sku": "V99-DEMO-005",
+            "modelo": "Air Presto · Off-White",
+            "colorway": "White / Black",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 675000,
+            "costo_adquisicion_crc": 450000,
+            "rareza": "MUY_RARO",
+            "condicion": "COLECCION",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/offwhite-presto.jpg"
+          },
+          {
+            "id": 4,
+            "colaboracion_id": 4,
+            "sku": "V99-DEMO-004",
+            "modelo": "Air Jordan 1 · Dior",
+            "colorway": "Grey / White",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 2400000,
+            "costo_adquisicion_crc": 1750000,
+            "rareza": "GRAIL",
+            "condicion": "COLECCION",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/dior-jordan.jpg"
+          },
+          {
+            "id": 3,
+            "colaboracion_id": 3,
+            "sku": "V99-DEMO-003",
+            "modelo": "Air Force 1 · Supreme",
+            "colorway": "White / White",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 425000,
+            "costo_adquisicion_crc": 250000,
+            "rareza": "EXCLUSIVO",
+            "condicion": "NUEVO",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/supreme-af1-white.png"
+          },
+          {
+            "id": 2,
+            "colaboracion_id": 2,
+            "sku": "V99-DEMO-002",
+            "modelo": "Air Jordan 1 · Off-White",
+            "colorway": "Chicago / Red / Black",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 1250000,
+            "costo_adquisicion_crc": 850000,
+            "rareza": "MUY_RARO",
+            "condicion": "COLECCION",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/offwhite-jordan-chicago.jpg"
+          },
+          {
+            "id": 1,
+            "colaboracion_id": 1,
+            "sku": "V99-DEMO-001",
+            "modelo": "Air Force 1 · Louis Vuitton",
+            "colorway": "Red / White",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 1850000,
+            "costo_adquisicion_crc": 1200000,
+            "rareza": "GRAIL",
+            "condicion": "COLECCION",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/lv-af1-red.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tenis/13",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 13,
+          "colaboracion_id": 15,
+          "sku": "QA-1793821708816",
+          "modelo": "QA Grail",
+          "colorway": "Blue",
+          "descripcion": null,
+          "precio_venta_crc": 250000,
+          "costo_adquisicion_crc": null,
+          "rareza": "GRAIL",
+          "condicion": "NUEVO",
+          "autenticidad_estado": "PENDIENTE",
+          "imagen_url": null
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/tenis/13",
+      "body": {
+        "colaboracion_id": 15,
+        "sku": "QA-1793821708816",
+        "modelo": "QA edited",
+        "colorway": "Blue",
+        "precio_venta_crc": 250000,
+        "rareza": "GRAIL",
+        "condicion": "NUEVO"
+      },
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 13,
+          "colaboracion_id": 15,
+          "sku": "QA-1793821708816",
+          "modelo": "QA edited",
+          "colorway": "Blue",
+          "descripcion": null,
+          "precio_venta_crc": 250000,
+          "costo_adquisicion_crc": null,
+          "rareza": "GRAIL",
+          "condicion": "NUEVO",
+          "autenticidad_estado": "PENDIENTE",
+          "imagen_url": null
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tallas",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "id": 13,
+            "sistema": "EU",
+            "valor": 99.9
+          },
+          {
+            "id": 8,
+            "sistema": "EU",
+            "valor": 43
+          },
+          {
+            "id": 7,
+            "sistema": "US_HOMBRE",
+            "valor": 9.5
+          },
+          {
+            "id": 6,
+            "sistema": "US_HOMBRE",
+            "valor": 8.5
+          },
+          {
+            "id": 5,
+            "sistema": "US_MUJER",
+            "valor": 8
+          },
+          {
+            "id": 4,
+            "sistema": "EU",
+            "valor": 42
+          },
+          {
+            "id": 3,
+            "sistema": "US_HOMBRE",
+            "valor": 10
+          },
+          {
+            "id": 2,
+            "sistema": "US_HOMBRE",
+            "valor": 9
+          },
+          {
+            "id": 1,
+            "sistema": "US_HOMBRE",
+            "valor": 8
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tallas/13",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 13,
+          "sistema": "EU",
+          "valor": 99.9
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/tallas/13",
+      "body": {
+        "sistema": "EU",
+        "valor": 99.8
+      },
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 13,
+          "sistema": "EU",
+          "valor": 99.8
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/inventario",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "id": 22,
+            "tenis_id": 13,
+            "talla_id": 13,
+            "cantidad": 7,
+            "ubicacion": null,
+            "actualizado_en": "2026-11-04T19:48:29.000Z"
+          },
+          {
+            "id": 17,
+            "tenis_id": 8,
+            "talla_id": 8,
+            "cantidad": 0,
+            "ubicacion": "Archivo H",
+            "actualizado_en": "2026-11-04T17:00:33.000Z"
+          },
+          {
+            "id": 16,
+            "tenis_id": 8,
+            "talla_id": 2,
+            "cantidad": 0,
+            "ubicacion": "Archivo H",
+            "actualizado_en": "2026-11-04T17:00:33.000Z"
+          },
+          {
+            "id": 15,
+            "tenis_id": 7,
+            "talla_id": 7,
+            "cantidad": 1,
+            "ubicacion": "Vitrina G-01",
+            "actualizado_en": "2026-11-04T17:00:33.000Z"
+          },
+          {
+            "id": 14,
+            "tenis_id": 6,
+            "talla_id": 3,
+            "cantidad": 1,
+            "ubicacion": "Vitrina F-01",
+            "actualizado_en": "2026-11-04T17:00:33.000Z"
+          },
+          {
+            "id": 13,
+            "tenis_id": 5,
+            "talla_id": 8,
+            "cantidad": 2,
+            "ubicacion": "Archivo E",
+            "actualizado_en": "2026-11-04T17:00:33.000Z"
+          },
+          {
+            "id": 12,
+            "tenis_id": 5,
+            "talla_id": 6,
+            "cantidad": 1,
+            "ubicacion": "Vitrina E-01",
+            "actualizado_en": "2026-11-04T17:00:33.000Z"
+          },
+          {
+            "id": 11,
+            "tenis_id": 4,
+            "talla_id": 7,
+            "cantidad": 0,
+            "ubicacion": "Archivo D",
+            "actualizado_en": "2026-11-04T17:00:33.000Z"
+          },
+          {
+            "id": 10,
+            "tenis_id": 4,
+            "talla_id": 2,
+            "cantidad": 1,
+            "ubicacion": "Vitrina D-01",
+            "actualizado_en": "2026-11-04T17:00:33.000Z"
+          },
+          {
+            "id": 7,
+            "tenis_id": 3,
+            "talla_id": 5,
+            "cantidad": 0,
+            "ubicacion": "Archivo C",
+            "actualizado_en": "2026-11-04T16:53:36.000Z"
+          },
+          {
+            "id": 6,
+            "tenis_id": 3,
+            "talla_id": 3,
+            "cantidad": 3,
+            "ubicacion": "Vitrina C-01",
+            "actualizado_en": "2026-11-04T16:53:36.000Z"
+          },
+          {
+            "id": 5,
+            "tenis_id": 2,
+            "talla_id": 4,
+            "cantidad": 2,
+            "ubicacion": "Archivo B",
+            "actualizado_en": "2026-11-04T16:53:36.000Z"
+          },
+          {
+            "id": 4,
+            "tenis_id": 2,
+            "talla_id": 2,
+            "cantidad": 1,
+            "ubicacion": "Vitrina B-01",
+            "actualizado_en": "2026-11-04T16:53:36.000Z"
+          },
+          {
+            "id": 3,
+            "tenis_id": 1,
+            "talla_id": 3,
+            "cantidad": 0,
+            "ubicacion": "Archivo A",
+            "actualizado_en": "2026-11-04T16:53:36.000Z"
+          },
+          {
+            "id": 2,
+            "tenis_id": 1,
+            "talla_id": 2,
+            "cantidad": 2,
+            "ubicacion": "Vitrina A-02",
+            "actualizado_en": "2026-11-04T16:53:36.000Z"
+          },
+          {
+            "id": 1,
+            "tenis_id": 1,
+            "talla_id": 1,
+            "cantidad": 1,
+            "ubicacion": "Vitrina A-01",
+            "actualizado_en": "2026-11-04T16:53:36.000Z"
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/inventario/22",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 22,
+          "tenis_id": 13,
+          "talla_id": 13,
+          "cantidad": 7,
+          "ubicacion": null,
+          "actualizado_en": "2026-11-04T19:48:29.000Z"
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/inventario/22",
+      "body": {
+        "tenis_id": 13,
+        "talla_id": 13,
+        "cantidad": 7,
+        "ubicacion": "QA edited"
+      },
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 22,
+          "tenis_id": 13,
+          "talla_id": 13,
+          "cantidad": 7,
+          "ubicacion": "QA edited",
+          "actualizado_en": "2026-11-04T19:48:29.000Z"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/catalogo",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "id": 1,
+            "colaboracion_id": 1,
+            "sku": "V99-DEMO-001",
+            "modelo": "Air Force 1 · Louis Vuitton",
+            "colorway": "Red / White",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 1850000,
+            "costo_adquisicion_crc": 1200000,
+            "rareza": "GRAIL",
+            "condicion": "COLECCION",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/lv-af1-red.jpg",
+            "colaboracion": "Air Force 1 · Archivo de lujo",
+            "historia": "Referencia cultural de la colaboración Nike y Louis Vuitton. Catálogo académico, sin afiliación. Las imágenes son conceptos ilustrativos y no representan el producto oficial.",
+            "anio_lanzamiento": 2022,
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 2,
+            "marca_principal": "Nike",
+            "marca_colaboradora": "Louis Vuitton",
+            "stock": 3,
+            "tallas": [
+              {
+                "id": 1,
+                "tenis_id": 1,
+                "talla_id": 1,
+                "cantidad": 1,
+                "ubicacion": "Vitrina A-01",
+                "actualizado_en": "2026-11-04T16:53:36.000Z",
+                "sistema": "US_HOMBRE",
+                "valor": 8
+              },
+              {
+                "id": 2,
+                "tenis_id": 1,
+                "talla_id": 2,
+                "cantidad": 2,
+                "ubicacion": "Vitrina A-02",
+                "actualizado_en": "2026-11-04T16:53:36.000Z",
+                "sistema": "US_HOMBRE",
+                "valor": 9
+              },
+              {
+                "id": 3,
+                "tenis_id": 1,
+                "talla_id": 3,
+                "cantidad": 0,
+                "ubicacion": "Archivo A",
+                "actualizado_en": "2026-11-04T16:53:36.000Z",
+                "sistema": "US_HOMBRE",
+                "valor": 10
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "colaboracion_id": 2,
+            "sku": "V99-DEMO-002",
+            "modelo": "Air Jordan 1 · Off-White",
+            "colorway": "Chicago / Red / Black",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 1250000,
+            "costo_adquisicion_crc": 850000,
+            "rareza": "MUY_RARO",
+            "condicion": "COLECCION",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/offwhite-jordan-chicago.jpg",
+            "colaboracion": "The Ten · Archivo de diseño",
+            "historia": "Una exploración del lenguaje deconstruido. Referencia académica a Nike y Off-White; imágenes conceptuales originales.",
+            "anio_lanzamiento": 2017,
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 4,
+            "marca_principal": "Nike",
+            "marca_colaboradora": "Off-White",
+            "stock": 3,
+            "tallas": [
+              {
+                "id": 4,
+                "tenis_id": 2,
+                "talla_id": 2,
+                "cantidad": 1,
+                "ubicacion": "Vitrina B-01",
+                "actualizado_en": "2026-11-04T16:53:36.000Z",
+                "sistema": "US_HOMBRE",
+                "valor": 9
+              },
+              {
+                "id": 5,
+                "tenis_id": 2,
+                "talla_id": 4,
+                "cantidad": 2,
+                "ubicacion": "Archivo B",
+                "actualizado_en": "2026-11-04T16:53:36.000Z",
+                "sistema": "EU",
+                "valor": 42
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "colaboracion_id": 3,
+            "sku": "V99-DEMO-003",
+            "modelo": "Air Force 1 · Supreme",
+            "colorway": "White / White",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 425000,
+            "costo_adquisicion_crc": 250000,
+            "rareza": "EXCLUSIVO",
+            "condicion": "NUEVO",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/supreme-af1-white.png",
+            "colaboracion": "Air Force 1 · Archivo streetwear",
+            "historia": "Referencia cultural al encuentro de Nike y Supreme. Datos, precios y existencias ficticios.",
+            "anio_lanzamiento": 2020,
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 3,
+            "marca_principal": "Nike",
+            "marca_colaboradora": "Supreme",
+            "stock": 3,
+            "tallas": [
+              {
+                "id": 6,
+                "tenis_id": 3,
+                "talla_id": 3,
+                "cantidad": 3,
+                "ubicacion": "Vitrina C-01",
+                "actualizado_en": "2026-11-04T16:53:36.000Z",
+                "sistema": "US_HOMBRE",
+                "valor": 10
+              },
+              {
+                "id": 7,
+                "tenis_id": 3,
+                "talla_id": 5,
+                "cantidad": 0,
+                "ubicacion": "Archivo C",
+                "actualizado_en": "2026-11-04T16:53:36.000Z",
+                "sistema": "US_MUJER",
+                "valor": 8
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "colaboracion_id": 4,
+            "sku": "V99-DEMO-004",
+            "modelo": "Air Jordan 1 · Dior",
+            "colorway": "Grey / White",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 2400000,
+            "costo_adquisicion_crc": 1750000,
+            "rareza": "GRAIL",
+            "condicion": "COLECCION",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/dior-jordan.jpg",
+            "colaboracion": "Air Dior · Archivo de alta costura",
+            "historia": "Referencia académica al encuentro entre Jordan y Dior. Nike agrupa la marca Jordan en este modelo simplificado. Imagen conceptual, sin afiliación.",
+            "anio_lanzamiento": 2020,
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 5,
+            "marca_principal": "Nike",
+            "marca_colaboradora": "Dior",
+            "stock": 1,
+            "tallas": [
+              {
+                "id": 10,
+                "tenis_id": 4,
+                "talla_id": 2,
+                "cantidad": 1,
+                "ubicacion": "Vitrina D-01",
+                "actualizado_en": "2026-11-04T17:00:33.000Z",
+                "sistema": "US_HOMBRE",
+                "valor": 9
+              },
+              {
+                "id": 11,
+                "tenis_id": 4,
+                "talla_id": 7,
+                "cantidad": 0,
+                "ubicacion": "Archivo D",
+                "actualizado_en": "2026-11-04T17:00:33.000Z",
+                "sistema": "US_HOMBRE",
+                "valor": 9.5
+              }
+            ]
+          },
+          {
+            "id": 5,
+            "colaboracion_id": 12,
+            "sku": "V99-DEMO-005",
+            "modelo": "Air Presto · Off-White",
+            "colorway": "White / Black",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 675000,
+            "costo_adquisicion_crc": 450000,
+            "rareza": "MUY_RARO",
+            "condicion": "COLECCION",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/offwhite-presto.jpg",
+            "colaboracion": "Air Presto White · Off-White",
+            "historia": "Referencia académica a la edición White de la colaboración Nike y Off-White, lanzada en 2018.",
+            "anio_lanzamiento": 2018,
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 4,
+            "marca_principal": "Nike",
+            "marca_colaboradora": "Off-White",
+            "stock": 3,
+            "tallas": [
+              {
+                "id": 12,
+                "tenis_id": 5,
+                "talla_id": 6,
+                "cantidad": 1,
+                "ubicacion": "Vitrina E-01",
+                "actualizado_en": "2026-11-04T17:00:33.000Z",
+                "sistema": "US_HOMBRE",
+                "valor": 8.5
+              },
+              {
+                "id": 13,
+                "tenis_id": 5,
+                "talla_id": 8,
+                "cantidad": 2,
+                "ubicacion": "Archivo E",
+                "actualizado_en": "2026-11-04T17:00:33.000Z",
+                "sistema": "EU",
+                "valor": 43
+              }
+            ]
+          },
+          {
+            "id": 6,
+            "colaboracion_id": 13,
+            "sku": "V99-DEMO-006",
+            "modelo": "Air Foamposite One · Supreme",
+            "colorway": "Red / Gold / Black",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 850000,
+            "costo_adquisicion_crc": 600000,
+            "rareza": "MUY_RARO",
+            "condicion": "COLECCION",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/supreme-foamposite.jpg",
+            "colaboracion": "Air Foamposite One Red · Supreme",
+            "historia": "Referencia académica a la edición Red de la colaboración Nike y Supreme, lanzada en 2014.",
+            "anio_lanzamiento": 2014,
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 3,
+            "marca_principal": "Nike",
+            "marca_colaboradora": "Supreme",
+            "stock": 1,
+            "tallas": [
+              {
+                "id": 14,
+                "tenis_id": 6,
+                "talla_id": 3,
+                "cantidad": 1,
+                "ubicacion": "Vitrina F-01",
+                "actualizado_en": "2026-11-04T17:00:33.000Z",
+                "sistema": "US_HOMBRE",
+                "valor": 10
+              }
+            ]
+          },
+          {
+            "id": 7,
+            "colaboracion_id": 1,
+            "sku": "V99-DEMO-007",
+            "modelo": "Air Force 1 Mid · Louis Vuitton",
+            "colorway": "White / White",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 2150000,
+            "costo_adquisicion_crc": 1600000,
+            "rareza": "GRAIL",
+            "condicion": "COLECCION",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/lv-af1-mid.jpg",
+            "colaboracion": "Air Force 1 · Archivo de lujo",
+            "historia": "Referencia cultural de la colaboración Nike y Louis Vuitton. Catálogo académico, sin afiliación. Las imágenes son conceptos ilustrativos y no representan el producto oficial.",
+            "anio_lanzamiento": 2022,
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 2,
+            "marca_principal": "Nike",
+            "marca_colaboradora": "Louis Vuitton",
+            "stock": 1,
+            "tallas": [
+              {
+                "id": 15,
+                "tenis_id": 7,
+                "talla_id": 7,
+                "cantidad": 1,
+                "ubicacion": "Vitrina G-01",
+                "actualizado_en": "2026-11-04T17:00:33.000Z",
+                "sistema": "US_HOMBRE",
+                "valor": 9.5
+              }
+            ]
+          },
+          {
+            "id": 8,
+            "colaboracion_id": 14,
+            "sku": "V99-DEMO-008",
+            "modelo": "Air VaporMax · Off-White",
+            "colorway": "Black / Clear",
+            "descripcion": "Fotografía de referencia del modelo. Precios y existencias ficticios para uso académico.",
+            "precio_venta_crc": 795000,
+            "costo_adquisicion_crc": 520000,
+            "rareza": "EXCLUSIVO",
+            "condicion": "NUEVO",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": "/assets/offwhite-vapormax.jpg",
+            "colaboracion": "Air VaporMax Black · Off-White",
+            "historia": "Referencia académica a la edición Black de la colaboración Nike y Off-White, lanzada en 2018.",
+            "anio_lanzamiento": 2018,
+            "marca_principal_id": 1,
+            "marca_colaboradora_id": 4,
+            "marca_principal": "Nike",
+            "marca_colaboradora": "Off-White",
+            "stock": 0,
+            "tallas": [
+              {
+                "id": 16,
+                "tenis_id": 8,
+                "talla_id": 2,
+                "cantidad": 0,
+                "ubicacion": "Archivo H",
+                "actualizado_en": "2026-11-04T17:00:33.000Z",
+                "sistema": "US_HOMBRE",
+                "valor": 9
+              },
+              {
+                "id": 17,
+                "tenis_id": 8,
+                "talla_id": 8,
+                "cantidad": 0,
+                "ubicacion": "Archivo H",
+                "actualizado_en": "2026-11-04T17:00:33.000Z",
+                "sistema": "EU",
+                "valor": 43
+              }
+            ]
+          },
+          {
+            "id": 13,
+            "colaboracion_id": 15,
+            "sku": "QA-1793821708816",
+            "modelo": "QA edited",
+            "colorway": "Blue",
+            "descripcion": null,
+            "precio_venta_crc": 250000,
+            "costo_adquisicion_crc": null,
+            "rareza": "GRAIL",
+            "condicion": "NUEVO",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": null,
+            "colaboracion": "QA edited",
+            "historia": null,
+            "anio_lanzamiento": 2022,
+            "marca_principal_id": 18,
+            "marca_colaboradora_id": 20,
+            "marca_principal": "QA-A-1793821708816-edited",
+            "marca_colaboradora": "QA-B-1793821708816",
+            "stock": 7,
+            "tallas": [
+              {
+                "id": 22,
+                "tenis_id": 13,
+                "talla_id": 13,
+                "cantidad": 7,
+                "ubicacion": "QA edited",
+                "actualizado_en": "2026-11-04T19:48:29.000Z",
+                "sistema": "EU",
+                "valor": 99.8
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/catalogo?talla_id=13",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "id": 13,
+            "colaboracion_id": 15,
+            "sku": "QA-1793821708816",
+            "modelo": "QA edited",
+            "colorway": "Blue",
+            "descripcion": null,
+            "precio_venta_crc": 250000,
+            "costo_adquisicion_crc": null,
+            "rareza": "GRAIL",
+            "condicion": "NUEVO",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": null,
+            "colaboracion": "QA edited",
+            "historia": null,
+            "anio_lanzamiento": 2022,
+            "marca_principal_id": 18,
+            "marca_colaboradora_id": 20,
+            "marca_principal": "QA-A-1793821708816-edited",
+            "marca_colaboradora": "QA-B-1793821708816",
+            "stock": 7,
+            "tallas": [
+              {
+                "id": 22,
+                "tenis_id": 13,
+                "talla_id": 13,
+                "cantidad": 7,
+                "ubicacion": "QA edited",
+                "actualizado_en": "2026-11-04T19:48:29.000Z",
+                "sistema": "EU",
+                "valor": 99.8
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/catalogo?marca_id=20&rareza=GRAIL&colaboracion_id=15&buscar=QA",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": [
+          {
+            "id": 13,
+            "colaboracion_id": 15,
+            "sku": "QA-1793821708816",
+            "modelo": "QA edited",
+            "colorway": "Blue",
+            "descripcion": null,
+            "precio_venta_crc": 250000,
+            "costo_adquisicion_crc": null,
+            "rareza": "GRAIL",
+            "condicion": "NUEVO",
+            "autenticidad_estado": "PENDIENTE",
+            "imagen_url": null,
+            "colaboracion": "QA edited",
+            "historia": null,
+            "anio_lanzamiento": 2022,
+            "marca_principal_id": 18,
+            "marca_colaboradora_id": 20,
+            "marca_principal": "QA-A-1793821708816-edited",
+            "marca_colaboradora": "QA-B-1793821708816",
+            "stock": 7,
+            "tallas": [
+              {
+                "id": 22,
+                "tenis_id": 13,
+                "talla_id": 13,
+                "cantidad": 7,
+                "ubicacion": "QA edited",
+                "actualizado_en": "2026-11-04T19:48:29.000Z",
+                "sistema": "EU",
+                "valor": 99.8
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/inventario/22",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "id": 22,
+          "tenis_id": 13,
+          "talla_id": 13,
+          "cantidad": 7,
+          "ubicacion": "QA edited",
+          "actualizado_en": "2026-11-04T19:48:29.000Z"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/marcas",
+      "body": {
+        "id": 25,
+        "nombre": "QA"
+      },
+      "status": 400,
+      "response": {
+        "success": false,
+        "message": "Campo no permitido: id"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/marcas/nope",
+      "status": 400,
+      "response": {
+        "success": false,
+        "message": "ID inválido."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/unknown",
+      "status": 404,
+      "response": {
+        "success": false,
+        "message": "Ruta no encontrada."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/resumen",
+      "status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "modelos": 9,
+          "marcas": 7,
+          "colaboraciones": 8,
+          "pares": 22,
+          "agotados": 1
+        }
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/inventario/22",
+      "status": 204,
+      "response": null
+    },
+    {
+      "method": "GET",
+      "path": "/inventario/22",
+      "status": 404,
+      "response": {
+        "success": false,
+        "message": "Registro no encontrado."
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/tallas/13",
+      "status": 204,
+      "response": null
+    },
+    {
+      "method": "GET",
+      "path": "/tallas/13",
+      "status": 404,
+      "response": {
+        "success": false,
+        "message": "Registro no encontrado."
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/tenis/13",
+      "status": 204,
+      "response": null
+    },
+    {
+      "method": "GET",
+      "path": "/tenis/13",
+      "status": 404,
+      "response": {
+        "success": false,
+        "message": "Registro no encontrado."
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/colaboraciones/15",
+      "status": 204,
+      "response": null
+    },
+    {
+      "method": "GET",
+      "path": "/colaboraciones/15",
+      "status": 404,
+      "response": {
+        "success": false,
+        "message": "Registro no encontrado."
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/marcas/20",
+      "status": 204,
+      "response": null
+    },
+    {
+      "method": "GET",
+      "path": "/marcas/20",
+      "status": 404,
+      "response": {
+        "success": false,
+        "message": "Registro no encontrado."
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/marcas/18",
+      "status": 204,
+      "response": null
+    },
+    {
+      "method": "GET",
+      "path": "/marcas/18",
+      "status": 404,
+      "response": {
+        "success": false,
+        "message": "Registro no encontrado."
+      }
+    }
+  ]
+}

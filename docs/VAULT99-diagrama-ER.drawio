@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" version="24.7.17">
+  <diagram name="Modelo entidad relaci?n" id="vault99-er">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="VAULT 99 ? Modelo entidad-relaci?n" style="text;html=1;fontSize=26;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="55" y="30" width="1000" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="PK = clave primaria   ?   FK = clave for?nea   ?   UQ = ?nico   ?   NN = obligatorio" style="text;html=1;fontSize=13;fontColor=#595959;align=left;" vertex="1" parent="1">
+          <mxGeometry x="55" y="78" width="1100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="marcas" value="MARCAS" style="swimlane;html=1;startSize=40;horizontal=1;rounded=0;fillColor=#242320;swimlaneFillColor=#fffdf8;strokeColor=#807766;fontColor=#ffffff;fontSize=16;fontStyle=1;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="60" y="170" width="310" height="153" as="geometry" />
+        </mxCell>
+        <mxCell id="marcas_0" value="PK  id : INT UNSIGNED" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="marcas">
+          <mxGeometry x="0" y="43" width="310" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="marcas_1" value="UQ NN  nombre : VARCHAR(120)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="marcas">
+          <mxGeometry x="0" y="70" width="310" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="marcas_2" value="descripcion : VARCHAR(255)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="marcas">
+          <mxGeometry x="0" y="97" width="310" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="marcas_3" value="pais_origen : VARCHAR(100)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="marcas">
+          <mxGeometry x="0" y="124" width="310" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="colaboraciones" value="COLABORACIONES" style="swimlane;html=1;startSize=40;horizontal=1;rounded=0;fillColor=#242320;swimlaneFillColor=#fffdf8;strokeColor=#807766;fontColor=#ffffff;fontSize=16;fontStyle=1;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="480" y="150" width="350" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="colaboraciones_0" value="PK  id : INT UNSIGNED" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="colaboraciones">
+          <mxGeometry x="0" y="43" width="350" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="colaboraciones_1" value="NN  nombre : VARCHAR(180)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="colaboraciones">
+          <mxGeometry x="0" y="70" width="350" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="colaboraciones_2" value="FK NN  marca_principal_id : INT UNSIGNED" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="colaboraciones">
+          <mxGeometry x="0" y="97" width="350" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="colaboraciones_3" value="FK NN  marca_colaboradora_id : INT UNSIGNED" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="colaboraciones">
+          <mxGeometry x="0" y="124" width="350" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="colaboraciones_4" value="NN  anio_lanzamiento : SMALLINT UNSIGNED" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="colaboraciones">
+          <mxGeometry x="0" y="151" width="350" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="colaboraciones_5" value="historia : TEXT" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="colaboraciones">
+          <mxGeometry x="0" y="178" width="350" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="colaboraciones_6" value="NN  edicion_limitada : BOOLEAN" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="colaboraciones">
+          <mxGeometry x="0" y="205" width="350" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis" value="TENIS" style="swimlane;html=1;startSize=40;horizontal=1;rounded=0;fillColor=#242320;swimlaneFillColor=#fffdf8;strokeColor=#807766;fontColor=#ffffff;fontSize=16;fontStyle=1;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="955" y="150" width="385" height="369" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis_0" value="PK  id : INT UNSIGNED" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tenis">
+          <mxGeometry x="0" y="43" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis_1" value="FK NN  colaboracion_id : INT UNSIGNED" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tenis">
+          <mxGeometry x="0" y="70" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis_2" value="UQ NN  sku : VARCHAR(60)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tenis">
+          <mxGeometry x="0" y="97" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis_3" value="NN  modelo : VARCHAR(180)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tenis">
+          <mxGeometry x="0" y="124" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis_4" value="NN  colorway : VARCHAR(120)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tenis">
+          <mxGeometry x="0" y="151" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis_5" value="descripcion : TEXT" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tenis">
+          <mxGeometry x="0" y="178" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis_6" value="NN  precio_venta_crc : DECIMAL(12,2)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tenis">
+          <mxGeometry x="0" y="205" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis_7" value="costo_adquisicion_crc : DECIMAL(12,2)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tenis">
+          <mxGeometry x="0" y="232" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis_8" value="NN  rareza : ENUM" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tenis">
+          <mxGeometry x="0" y="259" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis_9" value="NN  condicion : ENUM" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tenis">
+          <mxGeometry x="0" y="286" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis_10" value="NN  autenticidad_estado : ENUM" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tenis">
+          <mxGeometry x="0" y="313" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tenis_11" value="imagen_url : VARCHAR(500)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tenis">
+          <mxGeometry x="0" y="340" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tallas" value="TALLAS" style="swimlane;html=1;startSize=40;horizontal=1;rounded=0;fillColor=#242320;swimlaneFillColor=#fffdf8;strokeColor=#807766;fontColor=#ffffff;fontSize=16;fontStyle=1;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="480" y="570" width="350" height="153" as="geometry" />
+        </mxCell>
+        <mxCell id="tallas_0" value="PK  id : INT UNSIGNED" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tallas">
+          <mxGeometry x="0" y="43" width="350" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tallas_1" value="NN  sistema : ENUM" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tallas">
+          <mxGeometry x="0" y="70" width="350" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tallas_2" value="NN  valor : DECIMAL(4,1)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tallas">
+          <mxGeometry x="0" y="97" width="350" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="tallas_3" value="UQ  (sistema, valor)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="tallas">
+          <mxGeometry x="0" y="124" width="350" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="inventario" value="INVENTARIO" style="swimlane;html=1;startSize=40;horizontal=1;rounded=0;fillColor=#242320;swimlaneFillColor=#fffdf8;strokeColor=#807766;fontColor=#ffffff;fontSize=16;fontStyle=1;align=left;spacingLeft=14;" vertex="1" parent="1">
+          <mxGeometry x="955" y="625" width="385" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="inventario_0" value="PK  id : INT UNSIGNED" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="inventario">
+          <mxGeometry x="0" y="43" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="inventario_1" value="FK NN  tenis_id : INT UNSIGNED" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="inventario">
+          <mxGeometry x="0" y="70" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="inventario_2" value="FK NN  talla_id : INT UNSIGNED" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="inventario">
+          <mxGeometry x="0" y="97" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="inventario_3" value="NN  cantidad : INT UNSIGNED" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="inventario">
+          <mxGeometry x="0" y="124" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="inventario_4" value="ubicacion : VARCHAR(120)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="inventario">
+          <mxGeometry x="0" y="151" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="inventario_5" value="NN  actualizado_en : DATETIME" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="inventario">
+          <mxGeometry x="0" y="178" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="inventario_6" value="UQ  (tenis_id, talla_id)" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=12;fontSize=12;fontColor=#242320;overflow=hidden;" vertex="1" parent="inventario">
+          <mxGeometry x="0" y="205" width="385" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="principal ? 1 a N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6f6455;strokeWidth=1.5;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.35;entryX=0;entryY=0.3;" edge="1" parent="1" source="marcas" target="colaboraciones">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="colaboradora ? 1 a N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6f6455;strokeWidth=1.5;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.75;entryX=0;entryY=0.7;" edge="1" parent="1" source="marcas" target="colaboraciones">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="incluye ? 1 a N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6f6455;strokeWidth=1.5;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;entryX=0;entryY=0.35;" edge="1" parent="1" source="colaboraciones" target="tenis">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="tiene ? 1 a N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6f6455;strokeWidth=1.5;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;fontSize=11;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="tenis" target="inventario">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="talla ? 1 a N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#6f6455;strokeWidth=1.5;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;fontSize=11;labelBackgroundColor=#ffffff;exitX=1;exitY=0.6;entryX=0;entryY=0.5;" edge="1" parent="1" source="tallas" target="inventario">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="Cada colaboraci?n relaciona dos marcas distintas. Inventario registra pares por modelo y talla; la combinaci?n es ?nica." style="text;html=1;fontSize=13;fontColor=#595959;align=left;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="55" y="905" width="1280" height="45" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
