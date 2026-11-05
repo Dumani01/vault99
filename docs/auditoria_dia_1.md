@@ -17,7 +17,11 @@ Se actualizaron el estado del repositorio en `docs/revision_requisitos.md`, el c
 
 ### Fase 2 y Fase 3 completadas el 5 de noviembre de 2026
 
-Se creó y utilizó la base aislada `vault99_sneakers_qa`. El backend incorporó Sequelize con un modelo por entidad, asociaciones y cinco migraciones reversibles. Las migraciones se aplicaron, se revirtieron y se aplicaron de nuevo correctamente en QA. La batería de integración aprobó 25 grupos y 62 peticiones HTTP; las pruebas unitarias y el build de React también fueron aprobados durante esta auditoría. La Fase 4 de revisión visual final sigue pendiente.
+Se creó y utilizó la base aislada `vault99_sneakers_qa`. El backend incorporó Sequelize con un modelo por entidad, asociaciones y cinco migraciones reversibles. Las migraciones se aplicaron, se revirtieron y se aplicaron de nuevo correctamente en QA. La batería de integración aprobó 25 grupos y 62 peticiones HTTP; las pruebas unitarias y el build de React también fueron aprobados durante esta auditoría.
+
+### Fase 4 completada el 5 de noviembre de 2026
+
+La aplicación se ejecutó desde la copia actual con Vite, Express, Sequelize y MySQL QA. La interfaz evidenció crear, consultar, editar, recargar, confirmar y eliminar un registro temporal de Marcas; el registro persistió y después se eliminó, dejando la base QA limpia. El formulario de Colaboraciones cargó las opciones de relación desde la API. La cobertura de CRUD para las cinco entidades se completó con la integración automatizada aprobada.
 
 ## Método y evidencia
 
