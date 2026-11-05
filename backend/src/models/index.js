@@ -1,0 +1,16 @@
+import Marca from './marcas.model.js';
+import Colaboracion from './colaboraciones.model.js';
+import Tenis from './tenis.model.js';
+import Talla from './tallas.model.js';
+import Inventario from './inventario.model.js';
+Marca.hasMany(Colaboracion,{as:'colaboracionesPrincipales',foreignKey:'marca_principal_id'});
+Marca.hasMany(Colaboracion,{as:'colaboracionesSecundarias',foreignKey:'marca_colaboradora_id'});
+Colaboracion.belongsTo(Marca,{as:'marcaPrincipal',foreignKey:'marca_principal_id'});
+Colaboracion.belongsTo(Marca,{as:'marcaColaboradora',foreignKey:'marca_colaboradora_id'});
+Colaboracion.hasMany(Tenis,{as:'tenis',foreignKey:'colaboracion_id'});
+Tenis.belongsTo(Colaboracion,{as:'colaboracionDetalle',foreignKey:'colaboracion_id'});
+Tenis.hasMany(Inventario,{as:'inventarios',foreignKey:'tenis_id'});
+Inventario.belongsTo(Tenis,{as:'tenis',foreignKey:'tenis_id'});
+Talla.hasMany(Inventario,{as:'inventarios',foreignKey:'talla_id'});
+Inventario.belongsTo(Talla,{as:'talla',foreignKey:'talla_id'});
+export {Marca,Colaboracion,Tenis,Talla,Inventario};

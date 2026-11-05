@@ -7,13 +7,20 @@
     "dev": "node --watch server.js",
     "start": "node server.js",
     "db:setup": "node scripts/setup-db.js",
+    "db:setup:qa": "node scripts/setup-qa-db.js",
+    "db:migrate": "sequelize-cli db:migrate --config config/config.cjs --migrations-path migrations",
+    "db:migrate:undo:all": "sequelize-cli db:migrate:undo:all --config config/config.cjs --migrations-path migrations",
     "test": "node --test tests/*.test.js",
     "test:integration": "node tests/integration.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mysql2": "^3.14.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.5.0"
+    "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.5"
   }
 }

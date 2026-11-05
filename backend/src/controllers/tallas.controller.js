@@ -1,3 +1,3 @@
-import model from '../models/tallas.model.js';
+import {modelFor} from '../models/crud.model.js';
 import {controllerFor} from './crud.controller.js';
-export default controllerFor('tallas',model);
+export default controllerFor('tallas',modelFor('tallas'));

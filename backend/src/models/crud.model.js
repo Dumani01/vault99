@@ -1,13 +1,15 @@
-import {pool} from './db.js';
 import {entities} from './entities.js';
+import {Marca,Colaboracion,Tenis,Talla,Inventario} from './index.js';
+const models={marcas:Marca,colaboraciones:Colaboracion,tenis:Tenis,tallas:Talla,inventario:Inventario};
+const plain=row=>row?.get({plain:true});
 export function modelFor(entity){
  if(!Object.hasOwn(entities,entity))throw new Error('Unknown entity');
- const table='`'+entity+'`';
+ const model=models[entity];
  return {
- async list(){const [rows]=await pool.execute(`SELECT * FROM ${table} ORDER BY id DESC`);return rows;},
- async get(id){const [rows]=await pool.execute(`SELECT * FROM ${table} WHERE id=?`,[id]);return rows[0];},
- async create(data){const keys=Object.keys(data);const [r]=await pool.execute(`INSERT INTO ${table} (${keys.map(k=>'`'+k+'`').join(',')}) VALUES (${keys.map(()=>'?').join(',')})`,Object.values(data));return this.get(r.insertId);},
- async update(id,data){const keys=Object.keys(data);const [r]=await pool.execute(`UPDATE ${table} SET ${keys.map(k=>'`'+k+'`=?').join(',')} WHERE id=?`,[...Object.values(data),id]);return r.affectedRows?this.get(id):undefined;},
- async remove(id){const [r]=await pool.execute(`DELETE FROM ${table} WHERE id=?`,[id]);return r.affectedRows;}
+ async list(){return (await model.findAll({order:[['id','DESC']]})).map(plain);},
+ async get(id){return plain(await model.findByPk(id));},
+ async create(data){return plain(await model.create(data));},
+ async update(id,data){const row=await model.findByPk(id);if(!row)return undefined;return plain(await row.update(data));},
+ async remove(id){const row=await model.findByPk(id);if(!row)return 0;await row.destroy();return 1;}
  };
 }

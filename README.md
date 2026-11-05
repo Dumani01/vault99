@@ -17,11 +17,16 @@ Requisitos: Node.js 22+ y MySQL 8.0.16+ (recomendado MySQL 8.4). Descomprime el 
 1. Abre una terminal en backend y ejecuta `npm install`.
 2. Copia `.env.example` a `.env`. Configura DB_HOST, DB_PORT, DB_USER y DB_PASSWORD con tu instancia MySQL. El usuario de instalación debe poder crear la base. No publiques ese archivo.
 3. En una base nueva, ejecuta `npm run db:setup`. Crea vault99_sneakers, las cinco tablas y datos demo. El instalador no borra tablas ni sobrescribe una base ya existente. Para importar manualmente usa MySQL Workbench: ejecuta sql/01_schema.sql y después sql/02_seed_demo.sql.
+   Como alternativa basada en Sequelize, ejecuta `npm run db:migrate` para aplicar las cinco migraciones versionadas. Esta opción crea únicamente el esquema; los datos demo se cargan con el instalador SQL.
 4. Ejecuta `npm run dev` en backend. Debe anunciar http://127.0.0.1:3011.
 5. En otra terminal, dentro de frontend, ejecuta `npm install` y `npm run dev`.
 6. Abre http://127.0.0.1:5173/. Vite redirige /api a 3011. Si cambias el puerto del backend, actualiza frontend/vite.config.js.
 
 Para actualizar una base de demostración antigua sin recrearla, ejecuta en MySQL Workbench `sql/04_actualizar_imagenes.sql` y después `sql/05_corregir_colaboraciones.sql`. Estos scripts actualizan únicamente los registros demo identificados; el segundo puede ejecutarse nuevamente sin duplicar las colaboraciones corregidas. Para una base nueva, el archivo de datos iniciales ya contiene las asociaciones corregidas.
+
+Para pruebas aisladas, desde `backend` ejecuta `npm run db:setup:qa` con una cuenta MySQL que tenga permiso `CREATE DATABASE`. Crea únicamente `vault99_sneakers_qa` y se detiene si esa base ya existe; no modifica `vault99_sneakers`. La cuenta limitada de la aplicación puede ejecutar el CRUD, pero no crear esta base de QA.
+
+Las migraciones Sequelize viven en `backend/migrations`, una por entidad: marcas, tallas, colaboraciones, tenis e inventario. Usa `npm run db:migrate:undo:all` solamente en una base de QA para revertir el esquema administrado por Sequelize.
 
 Si la base se creó con un usuario administrador, puedes cambiar backend/.env a un usuario con SELECT, INSERT, UPDATE y DELETE sobre vault99_sneakers. La instancia preparada ya usa una cuenta limitada. Mantén los servidores enlazados a 127.0.0.1: el panel no tiene autenticación por alcance académico.
 
@@ -48,6 +53,8 @@ mini-proyecto-1/
     server.js
     scripts/
     tests/
+    config/
+    migrations/
   frontend/
     src/
       components/
@@ -65,6 +72,8 @@ mini-proyecto-1/
     01_schema.sql
     02_seed_demo.sql
     03_consultas.sql
+    04_actualizar_imagenes.sql
+    05_corregir_colaboraciones.sql
   docs/
     justificacion.md
     modelo_datos.md
@@ -78,6 +87,10 @@ mini-proyecto-1/
   .gitignore
   README.md
 ```
+
+## Repositorio
+
+El proyecto está versionado en [GitHub](https://github.com/Dumani01/vault99), rama `main`. Los archivos `.env`, `node_modules` y las salidas de compilación no se publican.
 
 ## API
 

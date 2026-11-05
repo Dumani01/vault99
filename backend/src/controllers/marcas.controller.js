@@ -1,3 +1,3 @@
-import model from '../models/marcas.model.js';
+import {modelFor} from '../models/crud.model.js';
 import {controllerFor} from './crud.controller.js';
-export default controllerFor('marcas',model);
+export default controllerFor('marcas',modelFor('marcas'));

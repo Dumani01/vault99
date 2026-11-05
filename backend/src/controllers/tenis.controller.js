@@ -1,3 +1,3 @@
-import model from '../models/tenis.model.js';
+import {modelFor} from '../models/crud.model.js';
 import {controllerFor} from './crud.controller.js';
-export default controllerFor('tenis',model);
+export default controllerFor('tenis',modelFor('tenis'));

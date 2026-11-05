@@ -1,3 +1,3 @@
-import model from '../models/colaboraciones.model.js';
+import {modelFor} from '../models/crud.model.js';
 import {controllerFor} from './crud.controller.js';
-export default controllerFor('colaboraciones',model);
+export default controllerFor('colaboraciones',modelFor('colaboraciones'));

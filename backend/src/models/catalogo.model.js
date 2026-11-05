@@ -1,11 +1,5 @@
-import {pool} from './db.js';
+import {Colaboracion,Inventario,Marca,Talla,Tenis} from './index.js';
 export async function catalogo(id){
- const [rows]=await pool.execute(`SELECT t.*,c.nombre AS colaboracion,c.historia,c.anio_lanzamiento,c.marca_principal_id,c.marca_colaboradora_id,
- m.nombre AS marca_principal,mc.nombre AS marca_colaboradora,
- (SELECT COALESCE(SUM(i.cantidad),0) FROM inventario i WHERE i.tenis_id=t.id) AS stock
- FROM tenis t JOIN colaboraciones c ON c.id=t.colaboracion_id JOIN marcas m ON m.id=c.marca_principal_id JOIN marcas mc ON mc.id=c.marca_colaboradora_id ${id?'WHERE t.id=?':''} ORDER BY t.id`,id?[id]:[]);
- if(!rows.length)return rows;
- const [sizes]=await pool.execute(`SELECT i.*,ta.sistema,ta.valor FROM inventario i JOIN tallas ta ON ta.id=i.talla_id ${id?'WHERE i.tenis_id=?':''} ORDER BY ta.sistema,ta.valor`,id?[id]:[]);
- const byId=new Map();for(const size of sizes){if(!byId.has(size.tenis_id))byId.set(size.tenis_id,[]);byId.get(size.tenis_id).push(size);}
- return rows.map(row=>({...row,tallas:byId.get(row.id)||[]}));
+ const rows=await Tenis.findAll({where:id?{id}:undefined,order:[['id','ASC']],include:[{model:Colaboracion,as:'colaboracionDetalle',required:true,include:[{model:Marca,as:'marcaPrincipal',required:true},{model:Marca,as:'marcaColaboradora',required:true}]},{model:Inventario,as:'inventarios',required:false,include:[{model:Talla,as:'talla',required:true}]}]});
+ return rows.map(instance=>{const row=instance.get({plain:true}),c=row.colaboracionDetalle;return {...row,colaboracion:c.nombre,historia:c.historia,anio_lanzamiento:c.anio_lanzamiento,marca_principal_id:c.marca_principal_id,marca_colaboradora_id:c.marca_colaboradora_id,marca_principal:c.marcaPrincipal.nombre,marca_colaboradora:c.marcaColaboradora.nombre,stock:row.inventarios.reduce((total,item)=>total+Number(item.cantidad),0),tallas:row.inventarios.map(({talla,...item})=>({...item,sistema:talla.sistema,valor:Number(talla.valor)}))};});
 }

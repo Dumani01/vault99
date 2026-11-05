@@ -2,8 +2,9 @@ import 'dotenv/config';
 import assert from 'node:assert/strict';
 import {writeFile} from 'node:fs/promises';
 import {once} from 'node:events';
+import {QueryTypes} from 'sequelize';
 import app from '../src/app.js';
-import {pool} from '../src/models/db.js';
+import {sequelize} from '../src/models/db.js';
 const server=app.listen(0,'127.0.0.1');await once(server,'listening');
 const base=`http://127.0.0.1:${server.address().port}/api`;
 const evidence=[],cleanup=[];
@@ -14,11 +15,12 @@ async function request(method,path,body,status){
  assert.equal(response.status,status,JSON.stringify(data));return data?.data;
 }
 async function create(entity,body){const row=await request('POST','/'+entity,body,201);cleanup.push([entity,row.id]);return row;}
+async function one(sql,replacements=[]){const rows=await sequelize.query(sql,{replacements,type:QueryTypes.SELECT});return rows[0];}
 let passed=0;
 async function check(name,fn){await fn();passed++;console.log(`PASS ${name}`);}
 try{
  const suffix=Date.now();let a,b,c,t,s,i;
- await check('P01 POST marca persists in MySQL',async()=>{a=await create('marcas',{nombre:'QA-A-'+suffix});const [[row]]=await pool.execute('SELECT * FROM marcas WHERE id=?',[a.id]);assert.equal(row.nombre,a.nombre);});
+ await check('P01 POST marca persists in MySQL',async()=>{a=await create('marcas',{nombre:'QA-A-'+suffix});const row=await one('SELECT * FROM marcas WHERE id=?',[a.id]);assert.equal(row.nombre,a.nombre);});
  await check('P02 duplicate brand returns 409',()=>request('POST','/marcas',{nombre:a.nombre},409));
  b=await create('marcas',{nombre:'QA-B-'+suffix});
  const collaboration={nombre:'QA Collaboration',marca_principal_id:a.id,marca_colaboradora_id:b.id,anio_lanzamiento:2022};
@@ -34,7 +36,7 @@ try{
  await check('P10 create stock',async()=>{i=await create('inventario',{tenis_id:t.id,talla_id:s.id,cantidad:2,ubicacion:'QA'});});
  await check('P11 duplicate sneaker-size rejected',()=>request('POST','/inventario',{tenis_id:t.id,talla_id:s.id,cantidad:2},409));
  await check('P12 negative and fractional quantity rejected',async()=>{for(const cantidad of [-1,1.5])await request('PUT','/inventario/'+i.id,{tenis_id:t.id,talla_id:s.id,cantidad},400);});
- await check('P13 update stock and verify SQL persistence',async()=>{await request('PUT','/inventario/'+i.id,{tenis_id:t.id,talla_id:s.id,cantidad:7},200);const [[row]]=await pool.execute('SELECT cantidad FROM inventario WHERE id=?',[i.id]);assert.equal(row.cantidad,7);});
+ await check('P13 update stock and verify SQL persistence',async()=>{await request('PUT','/inventario/'+i.id,{tenis_id:t.id,talla_id:s.id,cantidad:7},200);const row=await one('SELECT cantidad FROM inventario WHERE id=?',[i.id]);assert.equal(row.cantidad,7);});
  for(const [name,entity,row] of [['P14','marcas',a],['P15','colaboraciones',c],['P16','tenis',t],['P17','tallas',s]])await check(name+' FK deletion protection',()=>request('DELETE','/'+entity+'/'+row.id,undefined,409));
  await check('P18 missing IDs return 404 in all entities',async()=>{for(const entity of ['marcas','colaboraciones','tenis','tallas','inventario'])await request('GET','/'+entity+'/4294967295',undefined,404);});
  await check('P19 all entity list/get/update endpoints work',async()=>{
@@ -48,8 +50,8 @@ try{
  await check('P22 size availability and filters match SQL',async()=>{const rows=await request('GET','/catalogo?talla_id='+s.id,undefined,200);assert.equal(rows.length,1);assert.equal(rows[0].tallas[0].cantidad,7);const filtered=await request('GET','/catalogo?marca_id='+b.id+'&rareza=GRAIL&colaboracion_id='+c.id+'&buscar=QA',undefined,200);assert.equal(filtered.length,1);});
  await check('P23 independent request retains saved stock',async()=>{const row=await request('GET','/inventario/'+i.id,undefined,200);assert.equal(row.cantidad,7);});
  await check('JSON errors, immutable IDs, bad IDs, unknown routes',async()=>{await request('POST','/marcas',{id:25,nombre:'QA'},400);await request('GET','/marcas/nope',undefined,400);await request('GET','/unknown',undefined,404);});
- await check('Summary totals match database',async()=>{const summary=await request('GET','/resumen',undefined,200);const [[row]]=await pool.execute('SELECT SUM(cantidad) AS total FROM inventario');assert.equal(summary.pares,Number(row.total));});
+ await check('Summary totals match database',async()=>{const summary=await request('GET','/resumen',undefined,200);const row=await one('SELECT SUM(cantidad) AS total FROM inventario');assert.equal(summary.pares,Number(row.total));});
  await check('P20 deletes all five entities when dependencies removed',async()=>{while(cleanup.length){const [entity,id]=cleanup.pop();await request('DELETE','/'+entity+'/'+id,undefined,204);await request('GET','/'+entity+'/'+id,undefined,404);}});
  await writeFile(new URL('../../docs/api-evidence.json',import.meta.url),JSON.stringify({date:new Date().toISOString(),passed,requests:evidence},null,2));
  console.log(`${passed} integration groups passed; ${evidence.length} HTTP requests recorded.`);
-}finally{for(const [entity,id] of cleanup.reverse())await pool.execute('DELETE FROM `'+entity+'` WHERE id=?',[id]).catch(()=>{});await new Promise(resolve=>server.close(resolve));await pool.end();}
+}finally{for(const [entity,id] of cleanup.reverse())await sequelize.query('DELETE FROM `'+entity+'` WHERE id=?',{replacements:[id]}).catch(()=>{});await new Promise(resolve=>server.close(resolve));await sequelize.close();}

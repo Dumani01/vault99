@@ -14,7 +14,7 @@ Revisión del 4 de noviembre de 2026 contra Mini_Proyecto_1_Dia_1.docx. El proye
 | Sin autenticación | Cumple: sin login, registro, tokens ni roles. |
 | POST 201, GET/PUT 200, inexistentes 404, DELETE 204 | Comprobado: 25 grupos de integración y 62 peticiones HTTP aprobados. |
 | Estructura backend/frontend | Cumple: models, controllers, routes, components, pages y services. |
-| Repositorio entregable | Esta carpeta no tiene .git; falta confirmar la entrega del repositorio solicitado. |
+| Repositorio entregable | Cumple: proyecto versionado y publicado en [GitHub](https://github.com/Dumani01/vault99), rama `main`. |
 
 ## Observaciones antes de entregar
 

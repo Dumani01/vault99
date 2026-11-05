@@ -12,6 +12,6 @@
 
 Capturas: vista-movil.png y vista-escritorio.png.
 
-Los modelos de demostración se ampliaron a 8, con 5 marcas, 4 colaboraciones, 8 tallas y 15 filas de inventario. Incluye un modelo agotado y modelos con una sola talla disponible.
+Los modelos de demostración se ampliaron a 8, con 5 marcas, 7 colaboraciones, 8 tallas y 15 filas de inventario. Incluye un modelo agotado y modelos con una sola talla disponible.
 
 La galería utiliza ilustraciones 2D originales y filtros de color, no los modelos 3D ni el código del video de referencia. No se ha desplegado en internet.

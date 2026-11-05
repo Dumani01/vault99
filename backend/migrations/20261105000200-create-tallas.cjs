@@ -1,0 +1,2 @@
+'use strict';
+module.exports={async up(queryInterface,Sequelize){await queryInterface.createTable('tallas',{id:{type:Sequelize.INTEGER.UNSIGNED,primaryKey:true,autoIncrement:true},sistema:{type:Sequelize.ENUM('US_HOMBRE','US_MUJER','EU'),allowNull:false},valor:{type:Sequelize.DECIMAL(4,1),allowNull:false}},{uniqueKeys:{uq_talla:{fields:['sistema','valor']}}});await queryInterface.sequelize.query('ALTER TABLE tallas ADD CONSTRAINT ck_tallas_valor CHECK (valor > 0)');},async down(queryInterface){await queryInterface.dropTable('tallas');}};

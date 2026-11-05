@@ -1,3 +1,3 @@
-import model from '../models/inventario.model.js';
+import {modelFor} from '../models/crud.model.js';
 import {controllerFor} from './crud.controller.js';
-export default controllerFor('inventario',model);
+export default controllerFor('inventario',modelFor('inventario'));

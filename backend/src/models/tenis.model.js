@@ -1,2 +1,5 @@
-import {modelFor} from './crud.model.js';
-export default modelFor('tenis');
+import {DataTypes,Model} from 'sequelize';
+import {sequelize} from './db.js';
+class Tenis extends Model{}
+Tenis.init({id:{type:DataTypes.INTEGER.UNSIGNED,primaryKey:true,autoIncrement:true},colaboracion_id:{type:DataTypes.INTEGER.UNSIGNED,allowNull:false},sku:{type:DataTypes.STRING(60),allowNull:false,unique:true},modelo:{type:DataTypes.STRING(180),allowNull:false},colorway:{type:DataTypes.STRING(120),allowNull:false},descripcion:{type:DataTypes.TEXT,allowNull:true},precio_venta_crc:{type:DataTypes.DECIMAL(12,2),allowNull:false,validate:{min:0.01}},costo_adquisicion_crc:{type:DataTypes.DECIMAL(12,2),allowNull:true,validate:{min:0}},rareza:{type:DataTypes.ENUM('EXCLUSIVO','MUY_RARO','GRAIL'),allowNull:false},condicion:{type:DataTypes.ENUM('NUEVO','COLECCION'),allowNull:false},autenticidad_estado:{type:DataTypes.ENUM('PENDIENTE','VERIFICADA'),allowNull:false,defaultValue:'PENDIENTE'},imagen_url:{type:DataTypes.STRING(500),allowNull:true}},{sequelize,modelName:'Tenis',tableName:'tenis',timestamps:false});
+export default Tenis;
